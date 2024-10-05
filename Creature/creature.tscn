@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbpqj0vsxfnjd"]
+
+[ext_resource type="Script" path="res://Creature/Creature.gd" id="1_h8l5y"]
+[ext_resource type="Texture2D" uid="uid://b36h8nc5tkl4a" path="res://Atlas.png" id="2_bdgq4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5qxc"]
+atlas = ExtResource("2_bdgq4")
+region = Rect2(0, 16, 7, 5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_plxjr"]
+radius = 4.0
+
+[node name="Creature" type="CharacterBody2D" groups=["affected_by_gravity"]]
+position = Vector2(23, 0)
+collision_layer = 2
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_h8l5y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_g5qxc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_plxjr")

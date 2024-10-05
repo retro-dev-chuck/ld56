@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy1fe0uyk6ow6"]
+
+[ext_resource type="PackedScene" uid="uid://d3wia2qltyfck" path="res://Player/player.tscn" id="1_h5b7i"]
+[ext_resource type="PackedScene" uid="uid://bbpqj0vsxfnjd" path="res://Creature/creature.tscn" id="2_0jlyj"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("1_h5b7i")]
+
+[node name="Creature" parent="." instance=ExtResource("2_0jlyj")]
+
+[node name="Creature2" parent="." instance=ExtResource("2_0jlyj")]
+position = Vector2(27, -11)
+
+[node name="Creature3" parent="." instance=ExtResource("2_0jlyj")]
+position = Vector2(29, 9)
+
+[node name="Creature4" parent="." instance=ExtResource("2_0jlyj")]
+position = Vector2(39, -7)
+
+[node name="Creature5" parent="." instance=ExtResource("2_0jlyj")]
+position = Vector2(42, 3)
+
+[node name="Creature6" parent="." instance=ExtResource("2_0jlyj")]
+position = Vector2(24, 37)
+
+[node name="Creature7" parent="." instance=ExtResource("2_0jlyj")]
+position = Vector2(-32, 35)
+
+[node name="Creature8" parent="." instance=ExtResource("2_0jlyj")]
+position = Vector2(-43, 14)
