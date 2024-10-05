@@ -1,14 +1,22 @@
-[gd_resource type="Resource" script_class="CreatureInventoryData" load_steps=4 format=3 uid="uid://caoxvr236wk3w"]
+[gd_resource type="Resource" script_class="CreatureInventoryData" load_steps=7 format=3 uid="uid://caoxvr236wk3w"]
 
+[ext_resource type="PackedScene" uid="uid://dqbj7gxv3v6gd" path="res://Creature/poop.tscn" id="1_i7c0b"]
 [ext_resource type="Script" path="res://Creature/CreatureData.gd" id="1_ratm1"]
 [ext_resource type="Script" path="res://Inventory/CreatureInventoryData.gd" id="2_2p0l6"]
+[ext_resource type="Texture2D" uid="uid://b36h8nc5tkl4a" path="res://Atlas.png" id="4_u3q5l"]
 
 [sub_resource type="Resource" id="Resource_y27gv"]
 script = ExtResource("1_ratm1")
 title = "Coffee"
 weight = 1.0
+poop = ExtResource("1_i7c0b")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0pmp"]
+atlas = ExtResource("4_u3q5l")
+region = Rect2(0, 16, 16, 16)
 
 [resource]
 script = ExtResource("2_2p0l6")
 amount = 1
 creatureData = SubResource("Resource_y27gv")
+texture = SubResource("AtlasTexture_g0pmp")

@@ -1,0 +1,133 @@
+[gd_scene load_steps=12 format=3 uid="uid://divudt3jk8dr5"]
+
+[ext_resource type="Script" path="res://Collector/Collector.gd" id="1_dnhwo"]
+[ext_resource type="Texture2D" uid="uid://b36h8nc5tkl4a" path="res://Atlas.png" id="2_eap7o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82tiv"]
+atlas = ExtResource("2_eap7o")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jblww"]
+atlas = ExtResource("2_eap7o")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_up1xv"]
+radius = 4.0
+height = 40.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4vdfh"]
+friction = 8.75
+bounce = 0.5
+absorbent = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wohjb"]
+size = Vector2(11.5, 1.5)
+
+[sub_resource type="Animation" id="Animation_m1620"]
+resource_name = "Correct"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContainerBack/Alert:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [26, 27, 26, 27, 26]
+}
+
+[sub_resource type="Animation" id="Animation_mp5vo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContainerBack/Alert:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [26]
+}
+
+[sub_resource type="Animation" id="Animation_hvk0a"]
+resource_name = "Wrong"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContainerBack/Alert:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [26, 28, 26, 28, 26]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t8q6t"]
+_data = {
+"Correct": SubResource("Animation_m1620"),
+"RESET": SubResource("Animation_mp5vo"),
+"Wrong": SubResource("Animation_hvk0a")
+}
+
+[node name="Collector" type="Node2D"]
+script = ExtResource("1_dnhwo")
+target_title = "Coffee"
+
+[node name="ContainerBack" type="Sprite2D" parent="."]
+z_index = 1
+z_as_relative = false
+scale = Vector2(-1, 1)
+texture = SubResource("AtlasTexture_82tiv")
+
+[node name="Alert" type="Sprite2D" parent="ContainerBack"]
+position = Vector2(3, -10)
+texture = ExtResource("2_eap7o")
+hframes = 8
+vframes = 8
+frame = 26
+
+[node name="ContainerFront" type="Sprite2D" parent="ContainerBack"]
+z_index = 5
+z_as_relative = false
+texture = SubResource("AtlasTexture_jblww")
+
+[node name="ContainerIcon" type="Sprite2D" parent="ContainerBack/ContainerFront"]
+z_index = 10
+z_as_relative = false
+position = Vector2(4, -2)
+
+[node name="CollectArea" type="Area2D" parent="ContainerBack"]
+position = Vector2(-34, 0)
+collision_layer = 0
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContainerBack/CollectArea"]
+z_index = 2
+z_as_relative = false
+position = Vector2(57, 3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_up1xv")
+
+[node name="BounceCollider" type="StaticBody2D" parent="ContainerBack"]
+position = Vector2(-34, 0)
+collision_layer = 255
+collision_mask = 255
+physics_material_override = SubResource("PhysicsMaterial_4vdfh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContainerBack/BounceCollider"]
+position = Vector2(34.75, -4.25)
+shape = SubResource("RectangleShape2D_wohjb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ContainerBack"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_t8q6t")
+}
+
+[connection signal="body_entered" from="ContainerBack/CollectArea" to="." method="_on_collect_area_body_entered"]

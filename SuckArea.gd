@@ -4,6 +4,8 @@ class_name SuckArea extends Area2D
 @export var target_pull_point: Node2D 
 @export var center_point: Vector2 
 @export var bodies_in_area: Array[PhysicsBody2D] = []
+var is_sucking: bool = false
+
 
 signal on_suck_done(body: Suckable)
 
@@ -11,9 +13,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("Unsuck"):
 		return
 	if Input.is_action_pressed("Suck"):
+		is_sucking = true
 		for body in bodies_in_area:
 			apply_gravitational_pull(body, delta)
 	else:
+		is_sucking = false
 		for body in bodies_in_area:
 			unset_suck(body)
 		

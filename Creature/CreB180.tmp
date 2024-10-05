@@ -12,7 +12,6 @@ radius = 4.0
 
 [sub_resource type="Animation" id="Animation_5a1ae"]
 resource_name = "Walk"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -75,7 +74,7 @@ item = ExtResource("5_6804s")
 [node name="Wander" type="Node2D" parent="." node_paths=PackedStringArray("character")]
 script = ExtResource("6_u5yky")
 radius = 12.0
-speed = Vector2(0.5, 4)
+speed = Vector2(4, 10)
 character = NodePath("..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

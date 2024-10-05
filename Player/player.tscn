@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d3wia2qltyfck"]
+[gd_scene load_steps=14 format=3 uid="uid://d3wia2qltyfck"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_nhsu7"]
 [ext_resource type="Texture2D" uid="uid://b36h8nc5tkl4a" path="res://Atlas.png" id="2_4ukn0"]
@@ -9,10 +9,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yt78k"]
 size = Vector2(14, 12)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mqdxb"]
-atlas = ExtResource("2_4ukn0")
-region = Rect2(1, 0, 14, 12)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h7ko0"]
 radius = 5.0
 height = 20.0
@@ -20,7 +16,83 @@ height = 20.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_4if70"]
 radius = 2.0
 
+[sub_resource type="Animation" id="Animation_k5i4x"]
+resource_name = "Walk"
+length = 0.5
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 1, 0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_no3jy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_n6o4f"]
+resource_name = "Suck"
+length = 0.5
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 2, 0, 2]
+}
+
+[sub_resource type="Animation" id="Animation_fjubm"]
+resource_name = "Idle"
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.375, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 3, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j85o6"]
+_data = {
+"Idle": SubResource("Animation_fjubm"),
+"RESET": SubResource("Animation_no3jy"),
+"Suck": SubResource("Animation_n6o4f"),
+"Walk": SubResource("Animation_k5i4x")
+}
+
 [node name="Player" type="CharacterBody2D"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(-1, -1)
 motion_mode = 1
 script = ExtResource("1_nhsu7")
 speed = 50.0
@@ -29,22 +101,28 @@ speed = 50.0
 script = ExtResource("2_vjt7i")
 
 [node name="Count" type="Label" parent="."]
-offset_left = -4.0
-offset_top = -12.0
-offset_right = 36.0
-offset_bottom = 16.0
-scale = Vector2(0.2, 0.2)
-theme_override_font_sizes/font_size = 20
+offset_left = -10.0
+offset_top = -13.0
+offset_right = 10.0
+offset_bottom = -2.0
+theme_override_font_sizes/font_size = 5
 text = "0/5"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_yt78k")
 
 [node name="Visual" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_mqdxb")
+z_index = 20
+texture = ExtResource("2_4ukn0")
+hframes = 8
+vframes = 8
 
 [node name="SuckArea" type="Area2D" parent="Visual" node_paths=PackedStringArray("target_pull_point")]
-position = Vector2(0, 1)
+position = Vector2(1, 3)
 collision_mask = 254
 monitorable = false
 script = ExtResource("3_idxwb")
@@ -68,6 +146,7 @@ shape = SubResource("CircleShape2D_4if70")
 debug_color = Color(0.89111, 0.000246814, 0.791182, 0.42)
 
 [node name="Unsucker" type="Node2D" parent="Visual" node_paths=PackedStringArray("unsuck_src_node", "unsuck_dst_node")]
+position = Vector2(3, 3)
 script = ExtResource("5_ynbm1")
 unsuck_src_node = NodePath("UnsuckSrc")
 unsuck_dst_node = NodePath("UnsuckTarget")
@@ -76,6 +155,11 @@ unsuck_dst_node = NodePath("UnsuckTarget")
 
 [node name="UnsuckTarget" type="Node2D" parent="Visual/Unsucker"]
 position = Vector2(18, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j85o6")
+}
 
 [connection signal="body_entered" from="Visual/SuckArea" to="Visual/SuckArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Visual/SuckArea" to="Visual/SuckArea" method="_on_body_exited"]
