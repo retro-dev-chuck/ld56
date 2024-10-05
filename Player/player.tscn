@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3wia2qltyfck"]
+[gd_scene load_steps=10 format=3 uid="uid://d3wia2qltyfck"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_nhsu7"]
 [ext_resource type="Texture2D" uid="uid://b36h8nc5tkl4a" path="res://Atlas.png" id="2_4ukn0"]
+[ext_resource type="Script" path="res://Inventory/InventoryCreature.gd" id="2_vjt7i"]
 [ext_resource type="Script" path="res://SuckArea.gd" id="3_idxwb"]
+[ext_resource type="Script" path="res://Player/Unsucker.gd" id="5_ynbm1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yt78k"]
 size = Vector2(14, 12)
@@ -22,6 +24,18 @@ radius = 2.0
 motion_mode = 1
 script = ExtResource("1_nhsu7")
 speed = 50.0
+
+[node name="InventoryCreature" type="Node2D" parent="."]
+script = ExtResource("2_vjt7i")
+
+[node name="Count" type="Label" parent="."]
+offset_left = -4.0
+offset_top = -12.0
+offset_right = 36.0
+offset_bottom = 16.0
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/font_size = 20
+text = "0/5"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_yt78k")
@@ -52,6 +66,16 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Visual/SuckArea/SuckTarget/Area2D"]
 shape = SubResource("CircleShape2D_4if70")
 debug_color = Color(0.89111, 0.000246814, 0.791182, 0.42)
+
+[node name="Unsucker" type="Node2D" parent="Visual" node_paths=PackedStringArray("unsuck_src_node", "unsuck_dst_node")]
+script = ExtResource("5_ynbm1")
+unsuck_src_node = NodePath("UnsuckSrc")
+unsuck_dst_node = NodePath("UnsuckTarget")
+
+[node name="UnsuckSrc" type="Node2D" parent="Visual/Unsucker"]
+
+[node name="UnsuckTarget" type="Node2D" parent="Visual/Unsucker"]
+position = Vector2(18, 0)
 
 [connection signal="body_entered" from="Visual/SuckArea" to="Visual/SuckArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Visual/SuckArea" to="Visual/SuckArea" method="_on_body_exited"]

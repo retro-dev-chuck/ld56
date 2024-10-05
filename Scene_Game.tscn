@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dy1fe0uyk6ow6"]
 
 [ext_resource type="PackedScene" uid="uid://d3wia2qltyfck" path="res://Player/player.tscn" id="1_h5b7i"]
-[ext_resource type="PackedScene" uid="uid://bbpqj0vsxfnjd" path="res://Creature/creature.tscn" id="2_0jlyj"]
+[ext_resource type="PackedScene" uid="uid://bbpqj0vsxfnjd" path="res://Creature/Creature_Coffee.tscn" id="2_0jlyj"]
 
 [node name="Game" type="Node2D"]
 

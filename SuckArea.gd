@@ -5,7 +5,11 @@ class_name SuckArea extends Area2D
 @export var center_point: Vector2 
 @export var bodies_in_area: Array[PhysicsBody2D] = []
 
+signal on_suck_done(body: Suckable)
+
 func _physics_process(delta: float) -> void:
+	if Input.is_action_pressed("Unsuck"):
+		return
 	if Input.is_action_pressed("Suck"):
 		for body in bodies_in_area:
 			apply_gravitational_pull(body, delta)
@@ -30,6 +34,7 @@ func apply_gravitational_pull(body: PhysicsBody2D, delta: float) -> void:
 	body.velocity += force * delta
 	if body.global_position.distance_squared_to(target_pull_point.global_position) < 25:
 		body.suction_done()
+		on_suck_done.emit(body as Suckable)
 		body.queue_free()
 
 func unset_suck(body: CharacterBody2D) -> void:
