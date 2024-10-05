@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbpqj0vsxfnjd"]
+[gd_scene load_steps=8 format=3 uid="uid://bbpqj0vsxfnjd"]
 
 [ext_resource type="Script" path="res://Creature/Creature.gd" id="1_h8l5y"]
+[ext_resource type="Resource" uid="uid://caoxvr236wk3w" path="res://Creature/Data/Coffee.tres" id="2_6xuhe"]
 [ext_resource type="Texture2D" uid="uid://b36h8nc5tkl4a" path="res://Atlas.png" id="2_bdgq4"]
+[ext_resource type="Script" path="res://Creature/Generator.gd" id="4_w5shl"]
+[ext_resource type="PackedScene" uid="uid://dqbj7gxv3v6gd" path="res://Creature/poop.tscn" id="5_6804s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g5qxc"]
 atlas = ExtResource("2_bdgq4")
@@ -16,9 +19,14 @@ collision_layer = 2
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_h8l5y")
+data = ExtResource("2_6xuhe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_g5qxc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_plxjr")
+
+[node name="Generator" type="Node2D" parent="."]
+script = ExtResource("4_w5shl")
+item = ExtResource("5_6804s")

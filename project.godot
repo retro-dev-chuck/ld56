@@ -68,7 +68,8 @@ Suck={
 
 [layer_names]
 
-2d_physics/layer_2="affected_by_gravity"
+2d_physics/layer_2="creature"
+2d_physics/layer_3="poop"
 
 [rendering]
 

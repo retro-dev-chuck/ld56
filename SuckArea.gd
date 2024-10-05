@@ -15,12 +15,10 @@ func _physics_process(delta: float) -> void:
 		
 
 func _on_body_entered(body: PhysicsBody2D) -> void:
-	print(body.name, " enter")
 	if body.is_in_group("affected_by_gravity"): 
 		bodies_in_area.append(body)
 
 func _on_body_exited(body: PhysicsBody2D) -> void:
-	print(body.name, " exit")
 	bodies_in_area.erase(body)
 
 func apply_gravitational_pull(body: PhysicsBody2D, delta: float) -> void:
@@ -31,6 +29,7 @@ func apply_gravitational_pull(body: PhysicsBody2D, delta: float) -> void:
 	body.is_sucked = true 
 	body.velocity += force * delta
 	if body.global_position.distance_squared_to(target_pull_point.global_position) < 25:
+		body.suction_done()
 		body.queue_free()
 
 func unset_suck(body: CharacterBody2D) -> void:

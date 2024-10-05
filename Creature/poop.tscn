@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqbj7gxv3v6gd"]
+
+[ext_resource type="Script" path="res://Creature/Poop.gd" id="1_cftnq"]
+[ext_resource type="Texture2D" uid="uid://b36h8nc5tkl4a" path="res://Atlas.png" id="2_4xqnl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6kec0"]
+radius = 2.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdhck"]
+atlas = ExtResource("2_4xqnl")
+region = Rect2(9, 17, 3, 4)
+
+[node name="Poop" type="CharacterBody2D" groups=["affected_by_gravity"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_cftnq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6kec0")
+debug_color = Color(0.356863, 0.172549, 0.0862745, 0.419608)
+
+[node name="Visual" type="Sprite2D" parent="."]
+z_index = -1
+texture = SubResource("AtlasTexture_vdhck")

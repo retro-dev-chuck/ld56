@@ -1,8 +1,3 @@
-class_name Creature extends CharacterBody2D
+class_name Creature extends Suckable
 
-var is_sucked: bool = false
-
-func _physics_process(delta: float) -> void:
-	if !is_sucked:
-		pass
-	move_and_slide()
+@export var data: CreatureInventoryData 

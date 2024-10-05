@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_nhsu7"]
 [ext_resource type="Texture2D" uid="uid://b36h8nc5tkl4a" path="res://Atlas.png" id="2_4ukn0"]
-[ext_resource type="Script" path="res://GravityField.gd" id="3_idxwb"]
+[ext_resource type="Script" path="res://SuckArea.gd" id="3_idxwb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yt78k"]
 size = Vector2(14, 12)
@@ -31,7 +31,7 @@ texture = SubResource("AtlasTexture_mqdxb")
 
 [node name="SuckArea" type="Area2D" parent="Visual" node_paths=PackedStringArray("target_pull_point")]
 position = Vector2(0, 1)
-collision_mask = 2
+collision_mask = 254
 monitorable = false
 script = ExtResource("3_idxwb")
 pull_strength = 1500.0
