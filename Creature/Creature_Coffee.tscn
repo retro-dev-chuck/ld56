@@ -89,8 +89,10 @@ libraries = {
 
 [node name="AudioWalk" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_egpr1")
-volume_db = -15.0
+volume_db = -25.0
 
 [node name="AudioPoop" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_u0s43")
+volume_db = -15.0
+pitch_scale = 1.25
 script = ExtResource("9_idt6m")

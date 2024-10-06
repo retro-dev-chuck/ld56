@@ -146,8 +146,10 @@ libraries = {
 
 [node name="AudioCorrect" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_iep1i")
+volume_db = -18.0
 
 [node name="AudioWrong" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_605cv")
+volume_db = -10.0
 
 [connection signal="body_entered" from="ContainerBack/CollectArea" to="." method="_on_collect_area_body_entered"]

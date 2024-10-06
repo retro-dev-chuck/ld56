@@ -26,6 +26,7 @@ func  _ready() -> void:
 func delete_save() -> void:
 	save = SaveData.new()
 	save_game()
+	thanks.visible = false
 	transition()
 	
 		

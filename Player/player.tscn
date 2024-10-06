@@ -156,14 +156,17 @@ libraries = {
 
 [node name="AudioGrass" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_8nrwe")
-volume_db = -7.0
+volume_db = -15.0
 
 [node name="AudioSuck" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_2uwgj")
-volume_db = -4.0
+volume_db = -15.0
 
 [node name="AudioPop" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, 1)
 stream = ExtResource("8_ic2gg")
+volume_db = 5.0
+pitch_scale = 0.8
 
 [node name="AudioPlop" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("9_wdcx5")

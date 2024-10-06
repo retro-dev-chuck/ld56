@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Level/LevelLoader.gd" id="3_ibcd4"]
 [ext_resource type="Texture2D" uid="uid://owjtoboeh58" path="res://Tiles.png" id="5_6owci"]
 [ext_resource type="Texture2D" uid="uid://b36h8nc5tkl4a" path="res://Atlas.png" id="5_mmg2y"]
-[ext_resource type="AudioStream" uid="uid://bg22f3y3fdaik" path="res://audio/bg.ogg" id="6_1e2qt"]
+[ext_resource type="AudioStream" uid="uid://xrya2gqbbois" path="res://audio/song.ogg" id="6_nhbt2"]
 [ext_resource type="Script" path="res://audio/AudioPlayer.gd" id="7_y03ah"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4aymk"]
@@ -237,6 +237,7 @@ offset_bottom = 87.0
 texture = SubResource("AtlasTexture_t7otq")
 
 [node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_1e2qt")
+stream = ExtResource("6_nhbt2")
+volume_db = -4.0
 autoplay = true
 script = ExtResource("7_y03ah")
