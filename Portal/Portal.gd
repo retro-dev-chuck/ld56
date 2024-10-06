@@ -8,12 +8,9 @@ func enable_portal() -> void:
 	area_2d.monitorable = true
 	area_2d.monitoring = true
 
-
-
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if is_portal_used: 
 		return
-	print(body.name)
 	if body.is_in_group("player"):
 		is_portal_used = true
 		on_player_entered.emit()

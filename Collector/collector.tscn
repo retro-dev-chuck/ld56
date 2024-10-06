@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://divudt3jk8dr5"]
+[gd_scene load_steps=15 format=3 uid="uid://divudt3jk8dr5"]
 
 [ext_resource type="Script" path="res://Collector/Collector.gd" id="1_dnhwo"]
 [ext_resource type="Texture2D" uid="uid://b36h8nc5tkl4a" path="res://Atlas.png" id="2_eap7o"]
+[ext_resource type="AudioStream" uid="uid://5y8b0nxup8jn" path="res://audio/correct.ogg" id="3_iep1i"]
+[ext_resource type="AudioStream" uid="uid://chlh6n7tyuol7" path="res://audio/wrong.ogg" id="4_605cv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_82tiv"]
 atlas = ExtResource("2_eap7o")
@@ -141,5 +143,11 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_t8q6t")
 }
+
+[node name="AudioCorrect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_iep1i")
+
+[node name="AudioWrong" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_605cv")
 
 [connection signal="body_entered" from="ContainerBack/CollectArea" to="." method="_on_collect_area_body_entered"]

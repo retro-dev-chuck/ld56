@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbpqj0vsxfnjd"]
+[gd_scene load_steps=12 format=3 uid="uid://bbpqj0vsxfnjd"]
 
 [ext_resource type="Script" path="res://Creature/Creature.gd" id="1_h8l5y"]
 [ext_resource type="Resource" uid="uid://caoxvr236wk3w" path="res://Creature/Data/Coffee.tres" id="2_6xuhe"]
@@ -7,8 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://clmqkbaw2115x" path="res://Creature/poop.tscn" id="5_uwmkv"]
 [ext_resource type="Script" path="res://Wander.gd" id="6_u5yky"]
 [ext_resource type="AudioStream" uid="uid://cgel6ak6viat" path="res://audio/grass_pooper.ogg" id="7_egpr1"]
-[ext_resource type="AudioStream" uid="uid://dj1oa7h0qhvh0" path="res://audio/poop.ogg" id="8_u0s43"]
-[ext_resource type="Script" path="res://audio/AudioPlayer.gd" id="9_idt6m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_plxjr"]
 radius = 4.0
@@ -72,8 +70,6 @@ shape = SubResource("CircleShape2D_plxjr")
 
 [node name="Generator" type="Node2D" parent="."]
 script = ExtResource("4_w5shl")
-gen_time = Vector2(1, 2)
-maximum = 8
 item = ExtResource("5_uwmkv")
 
 [node name="Wander" type="Node2D" parent="." node_paths=PackedStringArray("character")]
@@ -89,8 +85,3 @@ libraries = {
 
 [node name="AudioWalk" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_egpr1")
-volume_db = -15.0
-
-[node name="AudioPoop" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_u0s43")
-script = ExtResource("9_idt6m")

@@ -4,6 +4,7 @@ class_name Generator extends Node2D
 @export var maximum: int = 1
 @export var item: PackedScene
 @onready var touchgrass: TileMapLayer 
+@onready var audio_poop: AudioPlayer = $"../AudioPoop"
 
 var does_need_grass: bool = true
 var generated_items: Array[Suckable] = []
@@ -25,9 +26,10 @@ func _on_generate_timer_finished() -> void:
 		return
 	var new_item = item.instantiate() as Suckable
 	new_item.on_sucked.connect(_delete_from_list)
-	get_tree().root.add_child(new_item)
+	get_tree().current_scene.get_node("Level").add_child(new_item)
 	new_item.global_position = global_position
 	generated_items.append(new_item)
+	audio_poop.play_better()
 
 func _delete_from_list(i: Suckable) ->void:
 	generated_items.erase(i)
@@ -35,7 +37,8 @@ func _delete_from_list(i: Suckable) ->void:
 
 func is_on_grass() -> bool:
 	if touchgrass == null:
-		touchgrass = get_tree().current_scene.get_node("Level").get_node("%Touchgrass") as TileMapLayer
+		if get_tree().current_scene.get_node("Level"):
+			touchgrass = get_tree().current_scene.get_node("Level").get_node("%Touchgrass") as TileMapLayer
 		if touchgrass == null:
 			return false
 	if !is_inside_tree():

@@ -9,6 +9,7 @@ class_name Wander extends Node2D
 
 @onready var suckable: Suckable = $".."
 @onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
+@onready var audio_walk: AudioStreamPlayer2D = $"../AudioWalk"
 
 var target_point: Vector2  
 var moving: bool = false
@@ -46,6 +47,8 @@ func set_random_target_point() -> void:
 	var offset = Vector2(cos(random_angle), sin(random_angle)) * random_distance
 	target_point = center_pt + offset
 	animation_player.play("Walk")
+	if !audio_walk.playing:
+		audio_walk.play()
 	moving = true
 	
 
@@ -57,8 +60,10 @@ func move_to_target(delta: float) -> void:
 	if character.global_position.distance_to(target_point) < 1.0:
 		animation_player.stop()
 		moving = false
-		character.velocity = Vector2.ZERO
-		wait_timer.start(randf_range(wait_range.x, wait_range.y))
+		if audio_walk.playing:
+			audio_walk.stop()
+			character.velocity = Vector2.ZERO
+			wait_timer.start(randf_range(wait_range.x, wait_range.y))
 
 func suck_started() -> void:
 	animation_player.stop()

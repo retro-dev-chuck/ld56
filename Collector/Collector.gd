@@ -2,6 +2,8 @@ class_name Collector extends Node2D
 
 @onready var container_icon: Sprite2D = $ContainerBack/ContainerFront/ContainerIcon
 @onready var animation_player: AnimationPlayer = $ContainerBack/AnimationPlayer
+@onready var audio_correct: AudioStreamPlayer2D = $AudioCorrect
+@onready var audio_wrong: AudioStreamPlayer2D = $AudioWrong
 
 @export var target: CreatureInventoryData
 
@@ -31,8 +33,9 @@ func _on_collect_area_body_entered(body: Node2D) -> void:
 				game = get_tree().current_scene
 			if game:
 				game.increase_amount()
-			print("correct")
+			audio_correct.play()
 		else:
 			animation_player.play("Wrong")
-			print("wrong")
+			audio_wrong.play()
 			wrong_amount += 1
+		suckable.queue_free()

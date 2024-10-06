@@ -1,10 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://d3wia2qltyfck"]
+[gd_scene load_steps=18 format=3 uid="uid://d3wia2qltyfck"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_nhsu7"]
 [ext_resource type="Texture2D" uid="uid://b36h8nc5tkl4a" path="res://Atlas.png" id="2_4ukn0"]
 [ext_resource type="Script" path="res://Inventory/InventoryCreature.gd" id="2_vjt7i"]
 [ext_resource type="Script" path="res://SuckArea.gd" id="3_idxwb"]
 [ext_resource type="Script" path="res://Player/Unsucker.gd" id="5_ynbm1"]
+[ext_resource type="AudioStream" uid="uid://6hvayutj41lp" path="res://audio/grass.ogg" id="6_8nrwe"]
+[ext_resource type="AudioStream" uid="uid://h7xydvtnnbg0" path="res://audio/suck.ogg" id="7_2uwgj"]
+[ext_resource type="AudioStream" uid="uid://bv862f8q7fr54" path="res://audio/pop.ogg" id="8_ic2gg"]
+[ext_resource type="AudioStream" uid="uid://b3hrnu0d3ik4m" path="res://audio/plop.ogg" id="9_wdcx5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yt78k"]
 size = Vector2(8, 12)
@@ -100,17 +104,6 @@ speed = 50.0
 [node name="InventoryCreature" type="Node2D" parent="."]
 script = ExtResource("2_vjt7i")
 
-[node name="Count" type="Label" parent="."]
-offset_left = -10.0
-offset_top = -13.0
-offset_right = 10.0
-offset_bottom = -2.0
-theme_override_font_sizes/font_size = 5
-text = "0/5"
-horizontal_alignment = 1
-vertical_alignment = 1
-justification_flags = 1
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
 position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_yt78k")
@@ -160,6 +153,20 @@ position = Vector2(18, 0)
 libraries = {
 "": SubResource("AnimationLibrary_j85o6")
 }
+
+[node name="AudioGrass" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_8nrwe")
+volume_db = -7.0
+
+[node name="AudioSuck" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_2uwgj")
+volume_db = -4.0
+
+[node name="AudioPop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_ic2gg")
+
+[node name="AudioPlop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_wdcx5")
 
 [connection signal="body_entered" from="Visual/SuckArea" to="Visual/SuckArea" method="_on_body_entered"]
 [connection signal="body_exited" from="Visual/SuckArea" to="Visual/SuckArea" method="_on_body_exited"]

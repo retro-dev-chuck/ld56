@@ -12,7 +12,6 @@ func _ready() -> void:
 func _process_suck(sucked: Suckable) -> void:
 	var creature:Creature = sucked as Creature
 	if creature:
-		print(creature.data.creatureData.title, " added to inventory")
 		add_to_inventory(creature.data)
 
 func add_to_inventory(data: CreatureInventoryData) -> void:

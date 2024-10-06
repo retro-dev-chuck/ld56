@@ -6,6 +6,8 @@ class_name SuckArea extends Area2D
 @export var bodies_in_area: Array[PhysicsBody2D] = []
 @export var suck_power: int = 1
 var is_sucking: bool = false
+@onready var audio_suck: AudioStreamPlayer2D = $"../../AudioSuck"
+@onready var audio_pop: AudioStreamPlayer2D = $"../../AudioPop"
 
 
 signal on_suck_done(body: Suckable)
@@ -14,10 +16,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("Unsuck"):
 		return
 	if Input.is_action_pressed("Suck"):
+		if !audio_suck.playing:
+			audio_suck.play()
 		is_sucking = true
 		for body in bodies_in_area:
 			apply_gravitational_pull(body, delta)
 	else:
+		if audio_suck.playing:
+			audio_suck.stop()
 		is_sucking = false
 		for body in bodies_in_area:
 			unset_suck(body)
@@ -44,6 +50,7 @@ func apply_gravitational_pull(body: PhysicsBody2D, delta: float) -> void:
 	if body.global_position.distance_squared_to(target_pull_point.global_position) < 25:
 		body.suction_done()
 		on_suck_done.emit(body as Suckable)
+		audio_pop.play()
 		body.queue_free()
 
 func unset_suck(body: CharacterBody2D) -> void:

@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1u72v2etrvtl"]
+
+[ext_resource type="Script" path="res://Level/TargetUi.gd" id="1_ahcme"]
+[ext_resource type="Theme" uid="uid://bapjdcvep0kkf" path="res://themes/Theme.tres" id="1_gupgv"]
+
+[node name="TargetUi" type="CanvasLayer"]
+script = ExtResource("1_ahcme")
+
+[node name="Control" type="Control" parent="."]
+z_index = 1000
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="TargetLabel" type="Label" parent="Control"]
+z_index = 1001
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = 3.0
+grow_horizontal = 2
+theme = ExtResource("1_gupgv")
+theme_override_font_sizes/font_size = 6
+text = "Target: 1/10"
+horizontal_alignment = 1
+vertical_alignment = 1

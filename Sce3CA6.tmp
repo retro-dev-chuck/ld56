@@ -1,12 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://dy1fe0uyk6ow6"]
+[gd_scene load_steps=15 format=3 uid="uid://dy1fe0uyk6ow6"]
 
 [ext_resource type="Script" path="res://Level/GameManager.gd" id="1_csl2t"]
 [ext_resource type="PackedScene" uid="uid://b1u72v2etrvtl" path="res://Level/target_ui.tscn" id="2_u8kgu"]
 [ext_resource type="Script" path="res://Level/LevelLoader.gd" id="3_ibcd4"]
 [ext_resource type="Texture2D" uid="uid://owjtoboeh58" path="res://Tiles.png" id="5_6owci"]
 [ext_resource type="Texture2D" uid="uid://b36h8nc5tkl4a" path="res://Atlas.png" id="5_mmg2y"]
-[ext_resource type="AudioStream" uid="uid://bg22f3y3fdaik" path="res://audio/bg.ogg" id="6_1e2qt"]
-[ext_resource type="Script" path="res://audio/AudioPlayer.gd" id="7_y03ah"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4aymk"]
 resource_local_to_scene = true
@@ -235,8 +233,3 @@ offset_top = 47.0
 offset_right = 55.0
 offset_bottom = 87.0
 texture = SubResource("AtlasTexture_t7otq")
-
-[node name="AudioPlayer" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_1e2qt")
-autoplay = true
-script = ExtResource("7_y03ah")

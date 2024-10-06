@@ -4,6 +4,7 @@ class_name Player extends CharacterBody2D
 @onready var visual: Sprite2D = $Visual
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var suck_area: SuckArea = $Visual/SuckArea
+@onready var audio_grass: AudioStreamPlayer2D = $AudioGrass
 
 var prev_x: float = 0
 
@@ -33,7 +34,11 @@ func _physics_process(_delta: float) -> void:
 		
 	if velocity.length() > 0.5:
 		animation_player.play("Walk")
+		if !audio_grass.playing:
+			audio_grass.play()
 	else:
 		animation_player.play("Idle")
+		if audio_grass.playing:
+			audio_grass.stop()
 	prev_x = velocity.x
 	move_and_slide()
