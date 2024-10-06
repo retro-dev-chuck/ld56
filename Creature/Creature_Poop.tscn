@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8o1l6qtvhcgw"]
+
+[ext_resource type="PackedScene" uid="uid://bbpqj0vsxfnjd" path="res://Creature/Creature_Coffee.tscn" id="1_mhuev"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s1a0y"]
+radius = 2.0
+
+[node name="Poop" instance=ExtResource("1_mhuev")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-0.5, -6.5)
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_s1a0y")
+
+[node name="Generator" parent="." index="2"]
+script = null
+
+[node name="Wander" parent="." index="3"]
+script = null

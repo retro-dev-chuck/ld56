@@ -16,9 +16,8 @@ height = 20.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_4if70"]
 radius = 2.0
 
-[sub_resource type="Animation" id="Animation_k5i4x"]
-resource_name = "Walk"
-length = 0.5
+[sub_resource type="Animation" id="Animation_fjubm"]
+resource_name = "Idle"
 step = 0.125
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -27,10 +26,10 @@ tracks/0/path = NodePath("Visual:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.375, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [1, 0, 1, 0, 1]
+"values": [0, 3, 0]
 }
 
 [sub_resource type="Animation" id="Animation_no3jy"]
@@ -65,8 +64,9 @@ tracks/0/keys = {
 "values": [0, 0, 2, 0, 2]
 }
 
-[sub_resource type="Animation" id="Animation_fjubm"]
-resource_name = "Idle"
+[sub_resource type="Animation" id="Animation_k5i4x"]
+resource_name = "Walk"
+length = 0.5
 step = 0.125
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -75,10 +75,10 @@ tracks/0/path = NodePath("Visual:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.375, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 3, 0]
+"values": [1, 0, 1, 0, 1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j85o6"]

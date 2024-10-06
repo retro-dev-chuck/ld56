@@ -4,11 +4,26 @@
 [ext_resource type="Resource" uid="uid://caoxvr236wk3w" path="res://Creature/Data/Coffee.tres" id="2_6xuhe"]
 [ext_resource type="Texture2D" uid="uid://b36h8nc5tkl4a" path="res://Atlas.png" id="2_bdgq4"]
 [ext_resource type="Script" path="res://Creature/Generator.gd" id="4_w5shl"]
-[ext_resource type="PackedScene" uid="uid://dqbj7gxv3v6gd" path="res://Creature/poop.tscn" id="5_6804s"]
+[ext_resource type="PackedScene" uid="uid://c8o1l6qtvhcgw" path="res://Creature/Creature_Poop.tscn" id="5_2me3h"]
 [ext_resource type="Script" path="res://Wander.gd" id="6_u5yky"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_plxjr"]
 radius = 4.0
+
+[sub_resource type="Animation" id="Animation_4eux5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
 
 [sub_resource type="Animation" id="Animation_5a1ae"]
 resource_name = "Walk"
@@ -24,21 +39,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [8, 9, 8, 9, 8]
-}
-
-[sub_resource type="Animation" id="Animation_4eux5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [8]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t8ger"]
@@ -70,7 +70,7 @@ shape = SubResource("CircleShape2D_plxjr")
 [node name="Generator" type="Node2D" parent="."]
 script = ExtResource("4_w5shl")
 max = 0
-item = ExtResource("5_6804s")
+item = ExtResource("5_2me3h")
 
 [node name="Wander" type="Node2D" parent="." node_paths=PackedStringArray("character")]
 script = ExtResource("6_u5yky")

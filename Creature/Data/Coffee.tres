@@ -1,15 +1,35 @@
-[gd_resource type="Resource" script_class="CreatureInventoryData" load_steps=7 format=3 uid="uid://caoxvr236wk3w"]
+[gd_resource type="Resource" script_class="CreatureInventoryData" load_steps=10 format=3 uid="uid://caoxvr236wk3w"]
 
-[ext_resource type="PackedScene" uid="uid://dqbj7gxv3v6gd" path="res://Creature/poop.tscn" id="1_i7c0b"]
 [ext_resource type="Script" path="res://Creature/CreatureData.gd" id="1_ratm1"]
+[ext_resource type="Script" path="res://Creature/Poop.gd" id="1_vov25"]
 [ext_resource type="Script" path="res://Inventory/CreatureInventoryData.gd" id="2_2p0l6"]
 [ext_resource type="Texture2D" uid="uid://b36h8nc5tkl4a" path="res://Atlas.png" id="4_u3q5l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6kec0"]
+radius = 2.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdhck"]
+atlas = ExtResource("4_u3q5l")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="PackedScene" id="PackedScene_wacq7"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Poop", "CharacterBody2D", "affected_by_gravity", "collision_layer", "collision_mask", "script", "CollisionShape2D", "CollisionShape2D", "shape", "debug_color", "Visual", "Sprite2D", "z_index", "z_as_relative", "position", "texture"),
+"node_count": 3,
+"node_paths": [NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 3, 3, 0, 4, 1, 5, 2, 1, 2, 1073741824, 0, 7, 6, -1, 2, 8, 3, 9, 4, 0, 1073741825, 0, 11, 10, -1, 4, 12, 5, 13, 6, 14, 7, 15, 8, 0),
+"variants": [4, 0, ExtResource("1_vov25"), SubResource("CircleShape2D_6kec0"), Color(0.356863, 0.172549, 0.0862745, 0.419608), 2, false, Vector2(-0.5, -6.5), SubResource("AtlasTexture_vdhck")],
+"version": 3
+}
 
 [sub_resource type="Resource" id="Resource_y27gv"]
 script = ExtResource("1_ratm1")
 title = "Coffee"
 weight = 1.0
-poop = ExtResource("1_i7c0b")
+poop = SubResource("PackedScene_wacq7")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g0pmp"]
 atlas = ExtResource("4_u3q5l")
