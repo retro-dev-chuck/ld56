@@ -4,3 +4,6 @@ class_name Creature extends Suckable
 
 func _ready() -> void:
 	title = data.creatureData.title
+
+func get_weight():
+	return data.creatureData.weight

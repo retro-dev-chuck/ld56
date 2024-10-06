@@ -3,7 +3,7 @@ class_name InventoryCreature extends Node2D
 signal on_amount_updated(current: int, max: int)
 
 @export var creatures: Array[CreatureInventoryData] = []
-@export var max_amount: int = 5
+@export var max_amount: int = 9001
 @onready var suck_area: SuckArea = $"../Visual/SuckArea"
 
 var total_amount: int = 0
@@ -42,5 +42,6 @@ func add_to_inventory(data: CreatureInventoryData) -> void:
 		
 	for i in range(creatures.size()):
 		print(creatures[i].creatureData.title, ":", creatures[i].amount)	
+		
 func is_full() -> bool:
 	return total_amount == max_amount	

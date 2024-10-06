@@ -21,3 +21,6 @@ func _physics_process(delta: float) -> void:
 
 func suction_done():
 	on_sucked.emit(self)
+
+func get_weight():
+	return 0

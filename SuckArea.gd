@@ -4,6 +4,7 @@ class_name SuckArea extends Area2D
 @export var target_pull_point: Node2D 
 @export var center_point: Vector2 
 @export var bodies_in_area: Array[PhysicsBody2D] = []
+@export var suck_power: int = 1
 var is_sucking: bool = false
 
 
@@ -30,6 +31,10 @@ func _on_body_exited(body: PhysicsBody2D) -> void:
 	bodies_in_area.erase(body)
 
 func apply_gravitational_pull(body: PhysicsBody2D, delta: float) -> void:
+	var suckable: Suckable = body as Suckable
+	if suckable:
+		if suck_power < suckable.get_weight():
+			return
 	center_point = target_pull_point.global_position
 	var direction: Vector2 = (center_point - body.global_position).normalized()
 	var distance: float = center_point.distance_to(body.global_position)

@@ -1,20 +1,43 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8o1l6qtvhcgw"]
+[gd_scene load_steps=9 format=3 uid="uid://iibn0i8fnfu6"]
 
-[ext_resource type="PackedScene" uid="uid://bbpqj0vsxfnjd" path="res://Creature/Creature_Coffee.tscn" id="1_mhuev"]
+[ext_resource type="PackedScene" uid="uid://bbpqj0vsxfnjd" path="res://Creature/Creature_Coffee.tscn" id="1_07foc"]
+[ext_resource type="Script" path="res://Creature/CreatureData.gd" id="2_3jj8m"]
+[ext_resource type="Script" path="res://Inventory/CreatureInventoryData.gd" id="3_a0gjc"]
+[ext_resource type="Texture2D" uid="uid://b36h8nc5tkl4a" path="res://Atlas.png" id="4_t5igc"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_s1a0y"]
+[sub_resource type="Resource" id="Resource_yhkkh"]
+script = ExtResource("2_3jj8m")
+title = "Poop"
+weight = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2pmi"]
+atlas = ExtResource("4_t5igc")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="Resource" id="Resource_hotjb"]
+script = ExtResource("3_a0gjc")
+amount = 1
+creatureData = SubResource("Resource_yhkkh")
+texture = SubResource("AtlasTexture_e2pmi")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lxqtw"]
 radius = 2.0
 
-[node name="Poop" instance=ExtResource("1_mhuev")]
+[node name="Poop" instance=ExtResource("1_07foc")]
+data = SubResource("Resource_hotjb")
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(-0.5, -6.5)
+frame = 16
 
 [node name="CollisionShape2D" parent="." index="1"]
-shape = SubResource("CircleShape2D_s1a0y")
+shape = SubResource("CircleShape2D_lxqtw")
 
 [node name="Generator" parent="." index="2"]
 script = null
 
 [node name="Wander" parent="." index="3"]
 script = null
+
+[node name="AnimationPlayer" parent="." index="4"]
+active = false

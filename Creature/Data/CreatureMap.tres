@@ -1,14 +1,20 @@
-[gd_resource type="Resource" script_class="CreatureMap" load_steps=5 format=3 uid="uid://bwjfpgl2vakk2"]
+[gd_resource type="Resource" script_class="CreatureMap" load_steps=7 format=3 uid="uid://bwjfpgl2vakk2"]
 
 [ext_resource type="PackedScene" uid="uid://bbpqj0vsxfnjd" path="res://Creature/Creature_Coffee.tscn" id="1_mdkk7"]
 [ext_resource type="Script" path="res://Creature/MapEntry.gd" id="1_oaudm"]
 [ext_resource type="Script" path="res://Creature/CreatureMap.gd" id="1_quuxk"]
+[ext_resource type="PackedScene" uid="uid://iibn0i8fnfu6" path="res://Creature/Creature_Poop.tscn" id="3_57igs"]
 
 [sub_resource type="Resource" id="Resource_xbqrt"]
 script = ExtResource("1_oaudm")
 key = "Coffee"
 value = ExtResource("1_mdkk7")
 
+[sub_resource type="Resource" id="Resource_2gogc"]
+script = ExtResource("1_oaudm")
+key = "Poop"
+value = ExtResource("3_57igs")
+
 [resource]
 script = ExtResource("1_quuxk")
-all_creatures = Array[ExtResource("1_oaudm")]([SubResource("Resource_xbqrt")])
+all_creatures = Array[ExtResource("1_oaudm")]([SubResource("Resource_xbqrt"), SubResource("Resource_2gogc")])
