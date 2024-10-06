@@ -8,7 +8,7 @@ const CREATURE_MAP = preload("res://Creature/Data/CreatureMap.tres")
 @export var unsuck_dst_node: Node2D
 
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("Suck"):
 		return
 	if Input.is_action_just_pressed("Unsuck"):
@@ -31,6 +31,5 @@ func _plop() -> void:
 						inventory_creature.total_amount -= 1
 
 func get_dir() -> Vector2:
-	var mouse_pos = get_global_mouse_position()
 	var direction = (unsuck_dst_node.global_position - unsuck_src_node.global_position).normalized()
 	return direction

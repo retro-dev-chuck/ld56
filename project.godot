@@ -81,6 +81,7 @@ Unsuck={
 2d_physics/layer_2="creature"
 2d_physics/layer_3="poop"
 2d_physics/layer_4="container_top"
+2d_physics/layer_5="Playa"
 
 [rendering]
 

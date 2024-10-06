@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://divudt3jk8dr5"]
+[gd_scene load_steps=13 format=3 uid="uid://divudt3jk8dr5"]
 
 [ext_resource type="Script" path="res://Collector/Collector.gd" id="1_dnhwo"]
 [ext_resource type="Texture2D" uid="uid://b36h8nc5tkl4a" path="res://Atlas.png" id="2_eap7o"]
@@ -21,7 +21,10 @@ bounce = 0.5
 absorbent = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wohjb"]
-size = Vector2(11.5, 1.5)
+size = Vector2(11.5, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dc7wt"]
+size = Vector2(8, 1)
 
 [sub_resource type="Animation" id="Animation_m1620"]
 resource_name = "Correct"
@@ -77,7 +80,6 @@ _data = {
 
 [node name="Collector" type="Node2D"]
 script = ExtResource("1_dnhwo")
-target_title = "Coffee"
 
 [node name="ContainerBack" type="Sprite2D" parent="."]
 z_index = 1
@@ -123,6 +125,16 @@ physics_material_override = SubResource("PhysicsMaterial_4vdfh")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContainerBack/BounceCollider"]
 position = Vector2(34.75, -4.25)
 shape = SubResource("RectangleShape2D_wohjb")
+
+[node name="BounceCollider" type="StaticBody2D" parent="ContainerBack/BounceCollider"]
+position = Vector2(2, 12)
+collision_layer = 255
+collision_mask = 255
+physics_material_override = SubResource("PhysicsMaterial_4vdfh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContainerBack/BounceCollider/BounceCollider"]
+position = Vector2(36, -4.5)
+shape = SubResource("RectangleShape2D_dc7wt")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ContainerBack"]
 root_node = NodePath("../..")

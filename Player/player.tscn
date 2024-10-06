@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Player/Unsucker.gd" id="5_ynbm1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yt78k"]
-size = Vector2(14, 12)
+size = Vector2(8, 12)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h7ko0"]
 radius = 5.0
@@ -89,7 +89,7 @@ _data = {
 "Walk": SubResource("Animation_k5i4x")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(-1, -1)
@@ -111,8 +111,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 justification_flags = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
+position = Vector2(-2, 2)
 shape = SubResource("RectangleShape2D_yt78k")
 
 [node name="Visual" type="Sprite2D" parent="."]

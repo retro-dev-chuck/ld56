@@ -1,7 +1,5 @@
 class_name InventoryCreature extends Node2D
 
-signal on_amount_updated(current: int, max: int)
-
 @export var creatures: Array[CreatureInventoryData] = []
 @export var max_amount: int = 9001
 @onready var suck_area: SuckArea = $"../Visual/SuckArea"

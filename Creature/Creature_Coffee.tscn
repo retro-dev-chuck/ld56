@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbpqj0vsxfnjd"]
+[gd_scene load_steps=11 format=3 uid="uid://bbpqj0vsxfnjd"]
 
 [ext_resource type="Script" path="res://Creature/Creature.gd" id="1_h8l5y"]
 [ext_resource type="Resource" uid="uid://caoxvr236wk3w" path="res://Creature/Data/Coffee.tres" id="2_6xuhe"]
 [ext_resource type="Texture2D" uid="uid://b36h8nc5tkl4a" path="res://Atlas.png" id="2_bdgq4"]
 [ext_resource type="Script" path="res://Creature/Generator.gd" id="4_w5shl"]
+[ext_resource type="PackedScene" uid="uid://clmqkbaw2115x" path="res://Creature/poop.tscn" id="5_uwmkv"]
 [ext_resource type="Script" path="res://Wander.gd" id="6_u5yky"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_plxjr"]
@@ -68,7 +69,7 @@ shape = SubResource("CircleShape2D_plxjr")
 
 [node name="Generator" type="Node2D" parent="."]
 script = ExtResource("4_w5shl")
-max = 0
+item = ExtResource("5_uwmkv")
 
 [node name="Wander" type="Node2D" parent="." node_paths=PackedStringArray("character")]
 script = ExtResource("6_u5yky")

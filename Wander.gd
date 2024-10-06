@@ -31,7 +31,7 @@ func _ready() -> void:
 	
 	suck_rest_timer.timeout.connect(set_random_target_point)
 	wait_timer.timeout.connect(set_random_target_point)
-	wait_timer.start(randf_range(wait_range.x, wait_range.y))
+	set_random_target_point()
 
 func _physics_process(delta: float) -> void:
 	if suckable.is_sucked:

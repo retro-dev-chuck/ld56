@@ -1,19 +1,53 @@
-[gd_resource type="Resource" script_class="CreatureMap" load_steps=7 format=3 uid="uid://bwjfpgl2vakk2"]
+[gd_resource type="Resource" script_class="CreatureMap" load_steps=14 format=3 uid="uid://bwjfpgl2vakk2"]
 
 [ext_resource type="PackedScene" uid="uid://bbpqj0vsxfnjd" path="res://Creature/Creature_Coffee.tscn" id="1_mdkk7"]
 [ext_resource type="Script" path="res://Creature/MapEntry.gd" id="1_oaudm"]
 [ext_resource type="Script" path="res://Creature/CreatureMap.gd" id="1_quuxk"]
-[ext_resource type="PackedScene" uid="uid://iibn0i8fnfu6" path="res://Creature/Creature_Poop.tscn" id="3_57igs"]
+[ext_resource type="Script" path="res://Creature/CreatureData.gd" id="3_ixin5"]
+[ext_resource type="Script" path="res://Inventory/CreatureInventoryData.gd" id="4_2sive"]
+[ext_resource type="Texture2D" uid="uid://b36h8nc5tkl4a" path="res://Atlas.png" id="5_xesjw"]
 
 [sub_resource type="Resource" id="Resource_xbqrt"]
 script = ExtResource("1_oaudm")
 key = "Coffee"
 value = ExtResource("1_mdkk7")
 
+[sub_resource type="Resource" id="Resource_yhkkh"]
+script = ExtResource("3_ixin5")
+title = "Poop"
+weight = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2pmi"]
+atlas = ExtResource("5_xesjw")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="Resource" id="Resource_hotjb"]
+script = ExtResource("4_2sive")
+amount = 1
+creatureData = SubResource("Resource_yhkkh")
+texture = SubResource("AtlasTexture_e2pmi")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lxqtw"]
+radius = 2.0
+
+[sub_resource type="PackedScene" id="PackedScene_lpmfd"]
+_bundled = {
+"base_scene": 0,
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Poop", "data", "Sprite2D", "position", "frame", "CollisionShape2D", "shape", "Generator", "script", "Wander", "AnimationPlayer", "active"),
+"node_count": 6,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2147483647, 0, -1, 1, 1, 1, 0, 0, 0, 2147483647, 262146, -1, 2, 3, 2, 4, 3, 0, 0, 0, 2147483647, 524293, -1, 1, 6, 4, 0, 0, 0, 2147483647, 786439, -1, 1, 8, 5, 0, 0, 0, 2147483647, 1048585, -1, 1, 8, 5, 0, 0, 0, 2147483647, 1310730, -1, 1, 11, 6, 0),
+"variants": [ExtResource("1_mdkk7"), SubResource("Resource_hotjb"), Vector2(-0.5, -6.5), 16, SubResource("CircleShape2D_lxqtw"), null, false],
+"version": 3
+}
+
 [sub_resource type="Resource" id="Resource_2gogc"]
 script = ExtResource("1_oaudm")
 key = "Poop"
-value = ExtResource("3_57igs")
+value = SubResource("PackedScene_lpmfd")
 
 [resource]
 script = ExtResource("1_quuxk")

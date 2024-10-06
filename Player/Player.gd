@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 @export var speed = 300.0
 @onready var visual: Sprite2D = $Visual
@@ -8,7 +8,7 @@ extends CharacterBody2D
 var prev_x: float = 0
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if suck_area.is_sucking:
 		velocity = Vector2.ZERO
 		animation_player.play("Suck")
